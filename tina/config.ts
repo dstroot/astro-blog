@@ -102,7 +102,78 @@ export default defineConfig({
 						]
 					}
 				]
+			},
+			{
+				name: 'past',
+				label: 'Blog Past',
+				path: 'src/content/posts',
+				format: 'mdx',
+				fields: [
+					{
+						type: 'string',
+						required: true,
+						name: 'title',
+						label: 'Title',
+						description: 'Title for this post'
+					},
+					{
+						type: 'string',
+						label: 'Excerpt',
+						required: true,
+						name: 'excerpt',
+						description: 'A short description of the post'
+					},
+					{
+						type: 'string',
+						label: 'Cover Image',
+						required: true,
+						name: 'coverImage',
+						description: 'The image used for the cover of the post'
+					},
+
+					{
+						type: 'string',
+						name: 'date',
+						label: 'Publication Date',
+						required: true,
+						description: 'The publication date'
+					},
+					{
+						name: 'published',
+						label: 'Published',
+						type: 'boolean',
+						description: 'If this is checked the post will be published'
+					},
+					{
+						type: 'rich-text',
+						label: 'Body',
+						name: 'SButton',
+						isBody: true,
+						templates: [
+							// Custom Components
+							{
+								label: 'SButton',
+								name: 'SButton',
+								fields: [
+									{
+										type: 'rich-text',
+										label: 'SButton',
+										name: 'children',
+										isBody: true
+									}
+								]
+							}
+						]
+					}
+				]
 			}
 		]
 	}
 })
+
+// author:
+//   name: Dan Stroot
+//   picture: /assets/blog/authors/dan.jpeg
+// ogImage:
+//   url: /assets/blog/img/haiti.jpg
+// seoURL: https://danstroot.com/2010/01/14/lessons-from-haiti/

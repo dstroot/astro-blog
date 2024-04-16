@@ -13,6 +13,13 @@ export const getPosts = async (max?: number) => {
 		.slice(0, max)
 }
 
+export const getPosts2 = async (max?: number) => {
+	return (await getCollection('posts')).slice(0, max)
+}
+
+//	.filter((post) => !post.data.published)
+// .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
 export const getTags = async () => {
 	const posts = await getCollection('blog')
 	const tags = new Set()

@@ -1,0 +1,54 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import BlogPost from '@/layouts/BlogPost2'
+import Code from '@/components/mdx/Code'
+// import ListRelatedPosts from '@/components/ListRelatedPosts'
+import Share from '@/components/Share'
+// import TableOfContents from '@/components/TableOfContents'
+import { getPosts2 } from '@/utils'
+import SButton from '@/components/mdx/SButton'
+// import Disqus from '@/components/Disqus'
+// import { disqusConfig } from '@/data/disqus.config'
+
+// const posts = await getCollection('posts')
+
+export async function getStaticPaths() {
+	const posts = await getPosts2()
+
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post
+	}))
+}
+type Props = CollectionEntry<'posts'>
+
+const post = Astro.props
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
+---
+
+<BlogPost
+	id={post.id}
+	data={post.data}
+	headings={headings}
+	readTime={remarkPluginFrontmatter.minutesRead}
+>
+	<div class='grid grid-cols-1 md:grid-cols-[20%_auto] gap-10 mt-8'>
+		<!-- aside  -->
+		<aside class='flex-col hidden gap-8 md:flex'>
+			<Share />
+		</aside>
+
+		<!-- post -->
+		<article class='w-full max-w-full'>
+			<div class='min-w-full mb-12 prose prose-lg md:prose-xl dark:prose-invert'>
+				<Content components={{ pre: Code, SButton }} />
+			</div>
+
+			<!-- related posts -->
+			<footer>
+				<h2 class='mb-6 text-lg font-bold dark:text-white'>Related Posts</h2>
+				<!-- <ListRelatedPosts posts={relatedPosts} /> -->
+			</footer>
+		</article>
+	</div>
+</BlogPost>

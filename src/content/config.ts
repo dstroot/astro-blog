@@ -19,4 +19,29 @@ const blog = defineCollection({
 		})
 })
 
-export const collections = { blog }
+const posts = defineCollection({
+	schema: () =>
+		z.object({
+			title: z.string().max(99),
+			excerpt: z.string().max(599),
+			coverImage: z.string().max(99),
+			date: z
+				.string()
+				.or(z.date())
+				.transform((val) => new Date(val)), // z.coerce.date(), // z.isodate(),
+			published: z.boolean().default(false),
+			author: z.object({
+				name: z.string().max(99),
+				picture: z.string().max(99)
+			}),
+			ogImage: z.object({
+				url: z.string().max(99)
+			}),
+			seoURL: z.string().optional().nullish()
+			// metadata: z.metadata(),
+			// content: z.mdx(),
+			// slug: z.path()
+		})
+})
+
+export const collections = { blog, posts }
