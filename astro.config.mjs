@@ -15,14 +15,17 @@ export default defineConfig({
 			wrap: true
 		}
 	},
+	image: {
+		domains: ['https://danstroot.imgix.net']
+	},
 	integrations: [
 		mdx({
 			syntaxHighlight: 'shiki',
 			shikiConfig: {
 				experimentalThemes: {
 					light: 'vitesse-light',
-					dark: 'material-theme-palenight',
-				  },
+					dark: 'material-theme-palenight'
+				},
 				wrap: true
 			},
 			drafts: true
