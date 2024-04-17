@@ -14,7 +14,6 @@ import SButton from '@/components/mdx/SButton'
 
 export async function getStaticPaths() {
 	const posts = await getPosts2()
-
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post
