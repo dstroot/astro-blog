@@ -7,7 +7,7 @@ const blog = defineCollection({
 		z.object({
 			title: z.string().max(80),
 			description: z.string(),
-			// Transform string to Date object
+			// Transform date string to Date object
 			pubDate: z
 				.string()
 				.or(z.date())
@@ -38,9 +38,6 @@ const posts = defineCollection({
 				url: z.string().max(99)
 			}),
 			seoURL: z.string().optional().nullish()
-			// metadata: z.metadata(),
-			// content: z.mdx(),
-			// slug: z.path()
 		})
 })
 
