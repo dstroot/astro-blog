@@ -9,6 +9,7 @@ import { getPosts2 } from '@/utils'
 import SButton from '@/components/mdx/SButton'
 // import Disqus from '@/components/Disqus'
 // import { disqusConfig } from '@/data/disqus.config'
+import YouTube from '@/components/mdx/YouTube'
 
 // const posts = await getCollection('posts')
 
@@ -40,7 +41,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 		<!-- post -->
 		<article class='w-full max-w-full'>
 			<div class='min-w-full mb-12 prose prose-lg md:prose-xl dark:prose-invert'>
-				<Content components={{ pre: Code, SButton }} />
+				<Content components={{ pre: Code, SButton, YouTube }} />
 			</div>
 
 			<!-- related posts -->
